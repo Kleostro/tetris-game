@@ -1,0 +1,39 @@
+.I {
+  background-color: #f00;
+}
+
+.J {
+  background-color: #ff0;
+}
+
+.L {
+  background-color: #ffa500;
+}
+
+.O {
+  background-color: #008000;
+}
+
+.S {
+  background-color: #800080;
+}
+
+.Z {
+  background-color: #00f;
+}
+
+.T {
+  background-color: #ffc0cb;
+}
+
+.I,
+.J,
+.L,
+.O,
+.S,
+.T,
+.Z {
+  box-shadow:
+    inset 2px 2px 2px #fff3,
+    inset -2px -2px 2px #01085933;
+}
