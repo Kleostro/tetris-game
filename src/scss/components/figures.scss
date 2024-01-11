@@ -37,8 +37,32 @@
 .S,
 .T,
 .Z,
-.ghost {
+.ghost,
+.sad {
   box-shadow:
     inset 2px 2px 2px #fff3,
     inset -2px -2px 2px #01085933;
+}
+
+.sad {
+  background-color: #ff0;
+  transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+.hide {
+  animation: hide 0.5s;
+}
+
+@keyframes hide {
+  0% {
+    transform: scale(0.8) rotate(30deg);
+  }
+
+  45% {
+    transform: scale(0.8) rotate(-30deg);
+  }
+
+  90% {
+    transform: scale(1) rotate(0);
+  }
 }

@@ -1,9 +1,11 @@
 /* eslint-disable no-continue */
 import { Tetris } from './src/js/Tetris';
-import { PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, convertPositionIndex } from './src/js/utilitis';
+import {
+  PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, SAD, convertPositionIndex,
+} from './src/js/utilitis';
 import './style.scss';
 
-const tetris = new Tetris();
+let tetris = new Tetris();
 const cells = document.querySelectorAll('[data-grid="grid__cell"]');
 
 let requestID;
@@ -70,10 +72,38 @@ const rotate = () => {
   draw();
 };
 
+const drawSad = () => {
+  const TOP_OFFSET = 5;
+  for (let row = 0; row < SAD.length; row += 1) {
+    for (let column = 0; column < SAD[0].length; column += 1) {
+      if (!SAD[row][column]) continue;
+      const cellIndex = convertPositionIndex(TOP_OFFSET + row, column);
+      cells[cellIndex].classList.add('sad');
+    }
+  }
+};
+
+const gameOverAnimation = () => {
+  const filledCells = [...cells].filter((cell) => cell.classList.length > 0);
+  filledCells.forEach((filledCell, i) => {
+    setTimeout(() => filledCell.classList.add('hide'), i * 10);
+    setTimeout(() => filledCell.removeAttribute('class'), i * 10 + 500);
+    setTimeout(drawSad, filledCells.length * 10 + 1000);
+  });
+};
+
 const gameOver = () => {
   stopLoop();
   document.removeEventListener('keydown', onKeyDown);
   hammer.off('panstart panleft panright pandown swipedown tap');
+  gameOverAnimation();
+
+  setTimeout(() => {
+    tetris = new Tetris();
+    initKeyDown();
+    initTouch();
+    startLoop();
+  }, 5000);
 };
 
 const moveDown = () => {
@@ -186,7 +216,7 @@ const initTouch = () => {
     }
   });
 
-  hammer.on('swipedown', (event) => {
+  hammer.on('swipedown', () => {
     dropDown();
   });
 
