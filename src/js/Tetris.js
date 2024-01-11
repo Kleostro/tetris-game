@@ -8,6 +8,7 @@ export class Tetris {
   constructor() {
     this.playField = undefined;
     this.tetromino = undefined;
+    this.isGameOver = false;
     this.init();
   }
 
@@ -88,11 +89,17 @@ export class Tetris {
     for (let row = 0; row < matrixSize; row += 1) {
       for (let column = 0; column < matrixSize; column += 1) {
         if (!this.tetromino.matrix[row][column]) continue;
+        if (this.isOutsideTopBoard(row)) return this.isGameOver = true;
+
         this.playField[this.tetromino.row + row][this.tetromino.column + column] = this.tetromino.name;
       }
     }
     this.processFilledRows();
     this.generateTetromino();
+  }
+
+  isOutsideTopBoard(row) {
+    return this.tetromino.row + row < 0;
   }
 
   processFilledRows() {

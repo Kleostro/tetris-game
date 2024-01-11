@@ -55,11 +55,18 @@ const rotate = () => {
   draw();
 };
 
+const gameOver = () => {
+  stopLoop();
+  document.removeEventListener('keydown', onKeyDown);
+};
+
 const moveDown = () => {
   tetris.moveTetrominoDown();
   draw();
   stopLoop();
   startLoop();
+
+  if (tetris.isGameOver) gameOver();
 };
 
 const moveLeft = () => {
