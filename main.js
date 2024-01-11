@@ -1,3 +1,4 @@
+/* eslint-disable no-continue */
 import Tetris from './src/js/Tetris';
 import { convertPositionIndex } from './src/js/utilitis';
 import './style.scss';
@@ -13,7 +14,8 @@ const drawTetromino = () => {
     for (let column = 0; column < tetrominoMatrixSize; column += 1) {
       if (!tetris.tetromino.matrix[row][column]) continue;
       if (tetris.tetromino.row + row < 0) continue;
-      const cellIndex = convertPositionIndex(tetris.tetromino.row + row, tetris.tetromino.column + column);
+      const cellIndex = convertPositionIndex(tetris.tetromino.row
+        + row, tetris.tetromino.column + column);
       cells[cellIndex].classList.add(name);
     }
   }

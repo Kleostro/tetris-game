@@ -1,3 +1,4 @@
+/* eslint-disable no-continue */
 import TETROMINOES from './figures';
 import {
   PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, TETROMINO_NAMES, getRandomElement, rotateMatrix,
@@ -37,19 +38,41 @@ class Tetris {
 
   moveTetrominoDown() {
     this.tetromino.row += 1;
+    if (!this.isValid()) this.tetromino.row -= 1;
   }
 
   moveTetrominoLeft() {
     this.tetromino.column -= 1;
+    if (!this.isValid()) this.tetromino.column += 1;
   }
 
   moveTetrominoRight() {
     this.tetromino.column += 1;
+    if (!this.isValid()) this.tetromino.column -= 1;
   }
 
   rotateTetrominoMatrix() {
+    const oldMatrix = this.tetromino.matrix;
     const rotatedMatrix = rotateMatrix(this.tetromino.matrix);
     this.tetromino.matrix = rotatedMatrix;
+    if (!this.isValid()) this.tetromino.matrix = oldMatrix;
+  }
+
+  isValid() {
+    const matrixSize = this.tetromino.matrix.length;
+    for (let row = 0; row < matrixSize; row += 1) {
+      for (let column = 0; column < matrixSize; column += 1) {
+        if (!this.tetromino.matrix[row][column]) continue;
+        if (this.isOutsideGameBoard(row, column)) return false;
+      }
+    }
+    return true;
+  }
+
+  isOutsideGameBoard(row, column) {
+    return this.tetromino.column + column < 0
+      || this.tetromino.column + column >= PLAYFIELD_COLUMNS
+      || this.tetromino.row + row >= this.playField.length;
   }
 }
 
