@@ -6,6 +6,9 @@ import './style.scss';
 const tetris = new Tetris();
 const cells = document.querySelectorAll('[data-grid="grid__cell"]');
 
+let requestID;
+let timeOutID;
+
 const drawTetromino = () => {
   const { name } = tetris.tetromino;
   const tetrominoMatrixSize = tetris.tetromino.matrix.length;
@@ -38,6 +41,15 @@ const draw = () => {
   drawTetromino();
 };
 
+const startLoop = () => {
+  timeOutID = setTimeout(() => requestID = requestAnimationFrame(moveDown), 500);
+};
+
+const stopLoop = () => {
+  cancelAnimationFrame(requestID);
+  clearTimeout(timeOutID);
+};
+
 const rotate = () => {
   tetris.rotateTetrominoMatrix();
   draw();
@@ -46,6 +58,8 @@ const rotate = () => {
 const moveDown = () => {
   tetris.moveTetrominoDown();
   draw();
+  stopLoop();
+  startLoop();
 };
 
 const moveLeft = () => {
@@ -97,4 +111,4 @@ const initKeyDown = () => {
 };
 
 initKeyDown();
-draw();
+moveDown();
