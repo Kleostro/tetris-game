@@ -4,7 +4,7 @@ import {
   PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, TETROMINO_NAMES, getRandomElement, rotateMatrix,
 } from './utilitis';
 
-class Tetris {
+export class Tetris {
   constructor() {
     this.playField = undefined;
     this.tetromino = undefined;
@@ -91,8 +91,35 @@ class Tetris {
         this.playField[this.tetromino.row + row][this.tetromino.column + column] = this.tetromino.name;
       }
     }
+    this.processFilledRows();
     this.generateTetromino();
   }
-}
 
-export default Tetris;
+  processFilledRows() {
+    const filledRows = this.findFilledRows();
+    this.removeFilledRows(filledRows);
+  }
+
+  findFilledRows() {
+    const filledRows = [];
+    for (let row = 0; row < PLAYFIELD_ROWS; row += 1) {
+      if (this.playField[row].every((cell) => Boolean(cell))) {
+        filledRows.push(row);
+      }
+    }
+    return filledRows;
+  }
+
+  removeFilledRows(filledRows) {
+    filledRows.forEach((row) => {
+      this.dropRowsAbove(row);
+    })
+  }
+
+  dropRowsAbove(rowToDelete) {
+    for (let row = rowToDelete; row > 0; row -= 1) {
+      this.playField[row] = this.playField[row - 1];
+    }
+    this.playField[0] = new Array(PLAYFIELD_COLUMNS).fill(0);
+  }
+}

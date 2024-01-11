@@ -1,5 +1,5 @@
 /* eslint-disable no-continue */
-import Tetris from './src/js/Tetris';
+import { Tetris } from './src/js/Tetris';
 import { PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, convertPositionIndex } from './src/js/utilitis';
 import './style.scss';
 
