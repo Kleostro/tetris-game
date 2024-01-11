@@ -35,10 +35,24 @@ const drawPlayField = () => {
   }
 };
 
+const drawGhostTetromino = () => {
+  const tetrominoMatrixSize = tetris.tetromino.matrix.length;
+  for (let row = 0; row < tetrominoMatrixSize; row += 1) {
+    for (let column = 0; column < tetrominoMatrixSize; column += 1) {
+      if (!tetris.tetromino.matrix[row][column]) continue;
+      if (tetris.tetromino.ghostRow + row < 0) continue;
+      const cellIndex = convertPositionIndex(tetris.tetromino.ghostRow
+        + row, tetris.tetromino.ghostColumn + column);
+      cells[cellIndex].classList.add('ghost');
+    }
+  }
+};
+
 const draw = () => {
   cells.forEach((cell) => cell.removeAttribute('class'));
   drawPlayField();
   drawTetromino();
+  drawGhostTetromino();
 };
 
 const startLoop = () => {

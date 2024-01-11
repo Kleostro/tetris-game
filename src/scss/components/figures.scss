@@ -1,3 +1,7 @@
+.ghost {
+  background-color: #dadada73;
+}
+
 .I {
   background-color: #f00;
 }
@@ -32,7 +36,8 @@
 .O,
 .S,
 .T,
-.Z {
+.Z,
+.ghost {
   box-shadow:
     inset 2px 2px 2px #fff3,
     inset -2px -2px 2px #01085933;
