@@ -1,6 +1,6 @@
 import TETROMINOES from './figures';
 import {
-  PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, TETROMINO_NAMES, getRandomElement,
+  PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, TETROMINO_NAMES, getRandomElement, rotateMatrix,
 } from './utilitis';
 
 class Tetris {
@@ -45,6 +45,11 @@ class Tetris {
 
   moveTetrominoRight() {
     this.tetromino.column += 1;
+  }
+
+  rotateTetrominoMatrix() {
+    const rotatedMatrix = rotateMatrix(this.tetromino.matrix);
+    this.tetromino.matrix = rotatedMatrix;
   }
 }
 

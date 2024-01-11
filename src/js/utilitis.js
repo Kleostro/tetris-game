@@ -8,3 +8,15 @@ export const getRandomElement = (arr) => {
 };
 
 export const convertPositionIndex = (row, column) => row * PLAYFIELD_COLUMNS + column;
+
+export function rotateMatrix(matrix) {
+  const matrixLen = matrix.length;
+  const rotatedMatrix = [];
+  for (let i = 0; i < matrixLen; i += 1) {
+    rotatedMatrix[i] = [];
+    for (let j = 0; j < matrixLen; j += 1) {
+      rotatedMatrix[i][j] = matrix[matrixLen - j - 1][i];
+    }
+  }
+  return rotatedMatrix;
+}
