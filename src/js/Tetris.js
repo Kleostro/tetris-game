@@ -34,6 +34,18 @@ class Tetris {
       column,
     };
   }
+
+  moveTetrominoDown() {
+    this.tetromino.row += 1;
+  }
+
+  moveTetrominoLeft() {
+    this.tetromino.column -= 1;
+  }
+
+  moveTetrominoRight() {
+    this.tetromino.column += 1;
+  }
 }
 
 export default Tetris;

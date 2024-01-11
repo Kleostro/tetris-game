@@ -6,7 +6,7 @@ const tetris = new Tetris();
 const cells = document.querySelectorAll('[data-grid="grid__cell"]');
 
 const drawTetromino = () => {
-  const name = tetris.tetromino.name;
+  const { name } = tetris.tetromino;
   const tetrominoMatrixSize = tetris.tetromino.matrix.length;
 
   for (let row = 0; row < tetrominoMatrixSize; row += 1) {
@@ -23,4 +23,41 @@ const draw = () => {
   cells.forEach((cell) => cell.removeAttribute('class'));
   drawTetromino();
 };
+
+const moveDown = () => {
+  tetris.moveTetrominoDown();
+  draw();
+};
+
+const moveLeft = () => {
+  tetris.moveTetrominoLeft();
+  draw();
+};
+
+const moveRight = () => {
+  tetris.moveTetrominoRight();
+  draw();
+};
+
+const onKeyDown = (event) => {
+  switch (event.key) {
+    case 'ArrowDown':
+      moveDown();
+      break;
+    case 'ArrowLeft':
+      moveLeft();
+      break;
+    case 'ArrowRight':
+      moveRight();
+      break;
+    default:
+      break;
+  }
+};
+
+const initKeyDown = () => {
+  document.addEventListener('keydown', onKeyDown);
+};
+
+initKeyDown();
 draw();
