@@ -1,6 +1,6 @@
 /* eslint-disable no-continue */
 import Tetris from './src/js/Tetris';
-import { convertPositionIndex } from './src/js/utilitis';
+import { PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, convertPositionIndex } from './src/js/utilitis';
 import './style.scss';
 
 const tetris = new Tetris();
@@ -21,8 +21,20 @@ const drawTetromino = () => {
   }
 };
 
+const drawPlayField = () => {
+  for (let row = 0; row < PLAYFIELD_ROWS; row += 1) {
+    for (let column = 0; column < PLAYFIELD_COLUMNS; column += 1) {
+      if (!tetris.playField[row][column]) continue;
+      const name = tetris.playField[row][column];
+      const cellIndex = convertPositionIndex(row, column);
+      cells[cellIndex].classList.add(name);
+    }
+  }
+};
+
 const draw = () => {
   cells.forEach((cell) => cell.removeAttribute('class'));
+  drawPlayField();
   drawTetromino();
 };
 
