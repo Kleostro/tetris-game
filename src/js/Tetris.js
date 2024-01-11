@@ -75,6 +75,11 @@ export class Tetris {
     }
   }
 
+  dropTetrominoDown() {
+    this.tetromino.row = this.tetromino.ghostRow;
+    this.placeTetromino();
+  }
+
   isValid() {
     const matrixSize = this.tetromino.matrix.length;
     for (let row = 0; row < matrixSize; row += 1) {

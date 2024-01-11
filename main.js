@@ -93,15 +93,17 @@ const moveRight = () => {
   draw();
 };
 
+const dropDown = () => {
+  tetris.dropTetrominoDown();
+  draw();
+};
+
 const onKeyDown = (event) => {
   switch (event.key) {
     case 'ArrowUp':
       rotate();
       break;
     case 'w':
-      rotate();
-      break;
-    case ' ':
       rotate();
       break;
     case 'ArrowDown':
@@ -121,6 +123,9 @@ const onKeyDown = (event) => {
       break;
     case 'd':
       moveRight();
+      break;
+    case ' ':
+      dropDown();
       break;
     default:
       break;
