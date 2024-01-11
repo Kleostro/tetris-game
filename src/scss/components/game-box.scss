@@ -1,0 +1,18 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  grid-template-rows: repeat(20, auto);
+  border-radius: 0.6vh;
+  padding: 0.6vh;
+  background-color: #c5ada4;
+  gap: 0.3vh;
+
+  &__cell {
+    --cell-size: min(4.5vh, 7.5vw);
+
+    border-radius: 0.3vh;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: #4f4e4e80;
+  }
+}

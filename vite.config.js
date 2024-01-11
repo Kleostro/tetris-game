@@ -3,7 +3,7 @@
 import Inspect from 'vite-plugin-inspect';
 import { resolve } from 'path';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
-import handlebars from 'vite-plugin-handlebars';
+// import handlebars from 'vite-plugin-handlebars';
 
 export default {
   publicDir: 'assets',
@@ -20,17 +20,15 @@ export default {
         quality: 70,
       },
     }),
-    handlebars({
-      partialDirectory: resolve(__dirname, './src/templates'),
-    }),
+    // handlebars({
+    //   partialDirectory: resolve(__dirname, './src/templates'),
+    // }),
   ],
   base: './',
   build: {
     rollupOptions: {
       input: {
         main: resolve(__dirname, './index.html'),
-        about: resolve(__dirname, './about/index.html'),
-        contacts: resolve(__dirname, './contacts/index.html'),
       },
     },
     minify: false,

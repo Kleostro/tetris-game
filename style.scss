@@ -1,13 +1,16 @@
 // базовые стили
-@import './src/scss/fonts';
-@import './src/scss/normalize';
-@import './src/scss/reset';
-@import './src/scss/variables';
+@import "./src/scss/fonts";
+@import "./src/scss/normalize";
+@import "./src/scss/reset";
+@import "./src/scss/variables";
 
 // миксины
-@import './src/scss/mixins/breakpoint';
-@import './src/scss/mixins/burger';
+@import "./src/scss/mixins/breakpoint";
+@import "./src/scss/mixins/burger";
 
 // базовые стили
-@import './src/scss/common';
-@import './src/scss/global';
+@import "./src/scss/common";
+@import "./src/scss/global";
+
+// стили игры
+@import "./src/scss/components/game-box";

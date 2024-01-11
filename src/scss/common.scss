@@ -8,8 +8,15 @@ body {
   min-width: 320px;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  background-color: #151515;
   scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100svh;
+  background-color: #151515;
 }
 
 *::before,
